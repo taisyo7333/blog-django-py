@@ -36,8 +36,9 @@ echo " -----> Initial contents of the current working directory."
 ls -lasR .
 
 # Ensure we are using the latest pip and wheel packages.
-
-pip install -U pip setuptools wheel
+# setuptools 82 removed pkg_resources. powershift loads the "image"
+# command through that module, so stay on the last release that ships it.
+pip install -U pip 'setuptools<82' wheel
 
 # Restore the cache directory from an incremental build.
 
